@@ -1,0 +1,481 @@
+'\" t
+.\"     Title: scanelf
+.\"    Author: Ned Ludd <solar@gentoo.org>
+.\" Generator: DocBook XSL Stylesheets v1.76.0 <http://docbook.sf.net/>
+.\"      Date: 03/03/2011
+.\"    Manual: Documentation for pax-utils
+.\"    Source: pax-utils 0.2.3
+.\"  Language: English
+.\"
+.TH "SCANELF" "1" "03/03/2011" "pax\-utils 0.2.3" "Documentation for pax-utils"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+scanelf \- user\-space utility to scan ELF files
+.SH "SYNOPSIS"
+.HP \w'\fBscanelf\fR\ 'u
+\fBscanelf\fR [\fIoptions\fR] \fIELFs\fR\ or\ \fIdirectories\fR
+.SH "DESCRIPTION"
+.PP
+
+\fBscanelf\fR
+is a user\-space utility to quickly scan given ELFs, directories, or common system paths for different information\&. This may include ELF types, their PaX markings, TEXTRELs, etc\&.\&.\&.
+.SH "OPTIONS"
+.PP
+\fB\-A\fR, \fB\-\-archives\fR
+.RS 4
+Scan archives (\&.a files)
+.RE
+.PP
+\fB\-a\fR, \fB\-\-all\fR
+.RS 4
+Print all useful/simple info
+.RE
+.PP
+\fB\-B\fR, \fB\-\-nobanner\fR
+.RS 4
+Don\*(Aqt display the header
+.RE
+.PP
+\fB\-b\fR, \fB\-\-bind\fR
+.RS 4
+Print symbol binding information (lazy or now)
+.RE
+.PP
+\fB\-D\fR, \fB\-\-endian\fR
+.RS 4
+Print ELF endianness (big/little/\&.\&.\&.)
+.RE
+.PP
+\fB\-E\fR, \fB\-\-etype\fR \fIETYPE\fR
+.RS 4
+Print only ELF files matching specified etype (like ET_DYN, ET_EXEC, etc\&.\&.\&.)
+.RE
+.PP
+\fB\-e\fR, \fB\-\-header\fR
+.RS 4
+Print GNU_STACK markings
+.RE
+.PP
+\fB\-F\fR, \fB\-\-format\fR \fIFORMAT\fR
+.RS 4
+Use specified format for output; see the
+\fBFORMAT\fR
+section for more information
+.RE
+.PP
+\fB\-f\fR, \fB\-\-from\fR \fIFILE\fR
+.RS 4
+Read input stream from specified filename
+.RE
+.PP
+\fB\-g\fR, \fB\-\-gmatch\fR
+.RS 4
+Use strncmp to match libraries (use with
+\fB\-N\fR)\&. Or regexp with symbol matching
+.RE
+.PP
+\fB\-h\fR, \fB\-\-help\fR
+.RS 4
+Show condensed usage and exit
+.RE
+.PP
+\fB\-I\fR, \fB\-\-osabi\fR
+.RS 4
+Print OSABI
+.RE
+.PP
+\fB\-i\fR, \fB\-\-interp\fR
+.RS 4
+Print the interpreter information (\&.interp/PT_INTERP)
+.RE
+.PP
+\fB\-k\fR, \fB\-\-section\fR \fISECTION\fR
+.RS 4
+Find ELFs with the specified section
+.RE
+.PP
+\fB\-L\fR, \fB\-\-ldcache\fR
+.RS 4
+Utilize
+ld\&.so\&.cache
+information (use with
+\fB\-r\fR/\fB\-n\fR)
+.RE
+.PP
+\fB\-l\fR, \fB\-\-ldpath\fR
+.RS 4
+Scan all directories in
+/etc/ld\&.so\&.conf
+.RE
+.PP
+\fB\-M\fR, \fB\-\-bits\fR \fIBITS\fR
+.RS 4
+Print only ELF files matching specified numeric bits (like 32/64)
+.RE
+.PP
+\fB\-m\fR, \fB\-\-mount\fR
+.RS 4
+Don\*(Aqt recursively cross mount points
+.RE
+.PP
+\fB\-N\fR, \fB\-\-lib\fR \fISONAME\fR
+.RS 4
+Find ELFs that need the specified SONAME
+.RE
+.PP
+\fB\-n\fR, \fB\-\-needed\fR
+.RS 4
+Print libraries the ELF is linked against (DT_NEEDED)
+.RE
+.PP
+\fB\-O\fR, \fB\-\-perms\fR \fIPERMS\fR
+.RS 4
+Print only ELF files with matching specified octal bits (like 755)
+.RE
+.PP
+\fB\-o\fR, \fB\-\-file\fR \fIFILE\fR
+.RS 4
+Write output stream to specified filename
+.RE
+.PP
+\fB\-p\fR, \fB\-\-path\fR
+.RS 4
+Scan all directories in PATH environment
+.RE
+.PP
+\fB\-q\fR, \fB\-\-quiet\fR
+.RS 4
+Only output \*(Aqbad\*(Aq things
+.RE
+.PP
+\fB\-R\fR, \fB\-\-recursive\fR
+.RS 4
+Scan directories recursively
+.RE
+.PP
+\fB\-r\fR, \fB\-\-rpath\fR
+.RS 4
+Print runpaths encoded in the ELF (DT_RPATH/DT_RUNPATH)
+.RE
+.PP
+\fB\-S\fR, \fB\-\-soname\fR
+.RS 4
+Print the ELF\*(Aqs shared library name (DT_SONAME)
+.RE
+.PP
+\fB\-s\fR, \fB\-\-symbol\fR \fISYMBOL\fR
+.RS 4
+Find the specified symbol; see
+\fBSYMBOL MATCHING\fR
+for more info
+.RE
+.PP
+\fB\-T\fR, \fB\-\-textrels\fR
+.RS 4
+Locate cause of TEXTRELs via objdump
+.RE
+.PP
+\fB\-t\fR, \fB\-\-textrel\fR
+.RS 4
+Print TEXTREL information
+.RE
+.PP
+\fB\-V\fR, \fB\-\-version\fR
+.RS 4
+Print version and exit
+.RE
+.PP
+\fB\-v\fR, \fB\-\-verbose\fR
+.RS 4
+Be verbose (can be used more than once)
+.RE
+.PP
+\fB\-X\fR, \fB\-\-fix\fR
+.RS 4
+Try and \*(Aqfix\*(Aq bad things (use with
+\fB\-r\fR/\fB\-e\fR)
+.RE
+.PP
+\fB\-x\fR, \fB\-\-pax\fR
+.RS 4
+Print PaX markings
+.RE
+.PP
+\fB\-Y\fR, \fB\-\-eabi\fR
+.RS 4
+Print EABI (only matters for a few architectures)
+.RE
+.PP
+\fB\-y\fR, \fB\-\-symlink\fR
+.RS 4
+Don\*(Aqt scan symlinks
+.RE
+.PP
+\fB\-Z\fR, \fB\-\-size\fR \fISIZE\fR
+.RS 4
+Print ELF file size
+.RE
+.PP
+\fB\-z\fR, \fB\-\-setpax\fR \fIFLAGS\fR
+.RS 4
+Sets EI_PAX/PT_PAX_FLAGS to specified flags (use with
+\fB\-Xx\fR)
+.RE
+.SH "FORMAT"
+.PP
+The format string is much like a printf string in that it is a literal string with flags requesting different information\&. For example, you could use a format string and expect the following results\&.
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+  # \fBscanelf\fR \fB\-BF\fR "file %f needs %n; funky time" /bin/bash
+  file bash needs libncurses\&.so\&.5,libdl\&.so\&.2,libc\&.so\&.6; funky time
+ 
+.fi
+.if n \{\
+.RE
+.\}
+.PP
+Note that when you use a format string, generally information related flags should be omitted\&. In other words, you do not want to try and request NEEDED output (\fB\-n\fR) and try to specify a format output at the sametime as these operations are mutually exclusive\&. Each information related flag has an equivalent conversion specifier, so use those instead\&. You can of course continue to use non\-information related flags (such as
+\fB\-\-verbose\fR)\&.
+.PP
+There are three characters that introduce conversion specifiers\&.
+.PP
+
+\(bu
+\fB%\fR
+\- replace with info
+.sp -1
+.TP 2
+\(bu
+\fB#\fR
+\- silent boolean match
+.sp -1
+.TP 2
+\(bu
+\fB+\fR
+\- verbose match
+.PP
+And there are a number of conversion specifiers\&. We try to match up the specifier with corresponding option\&.
+.PP
+
+\(bu
+\fBa\fR
+\- machine (EM) type
+.sp -1
+.TP 2
+\(bu
+\fBb\fR
+\- bind flags
+.sp -1
+.TP 2
+\(bu
+\fBe\fR
+\- program headers
+.sp -1
+.TP 2
+\(bu
+\fBD\fR
+\- endian
+.sp -1
+.TP 2
+\(bu
+\fBI\fR
+\- osabi
+.sp -1
+.TP 2
+\(bu
+\fBY\fR
+\- eabi
+.sp -1
+.TP 2
+\(bu
+\fBF\fR
+\- long filename
+.sp -1
+.TP 2
+\(bu
+\fBf\fR
+\- short filename
+.sp -1
+.TP 2
+\(bu
+\fBi\fR
+\- interp
+.sp -1
+.TP 2
+\(bu
+\fBk\fR
+\- section
+.sp -1
+.TP 2
+\(bu
+\fBM\fR
+\- EI class
+.sp -1
+.TP 2
+\(bu
+\fBN\fR
+\- specified needed
+.sp -1
+.TP 2
+\(bu
+\fBn\fR
+\- needed libraries
+.sp -1
+.TP 2
+\(bu
+\fBp\fR
+\- filename (minus search)
+.sp -1
+.TP 2
+\(bu
+\fBo\fR
+\- etype
+.sp -1
+.TP 2
+\(bu
+\fBO\fR
+\- perms
+.sp -1
+.TP 2
+\(bu
+\fBr\fR
+\- runpaths
+.sp -1
+.TP 2
+\(bu
+\fBS\fR
+\- SONAME
+.sp -1
+.TP 2
+\(bu
+\fBs\fR
+\- symbol
+.sp -1
+.TP 2
+\(bu
+\fBT\fR
+\- all textrels
+.sp -1
+.TP 2
+\(bu
+\fBt\fR
+\- textrel status
+.sp -1
+.TP 2
+\(bu
+\fBx\fR
+\- pax flags
+.sp
+.SH "SYMBOL MATCHING"
+.PP
+A
+\fB\-\fR
+prefix will only show undefined references while a
+\fB+\fR
+prefix will only show defined references while no prefix will show both\&.
+.SH "ELF ETYPES"
+.PP
+You can narrow your search by specifying the ELF object file type (ETYPE)\&. The commandline option takes the numeric value and or symbolic type\&. Multiple values can be passed comma separated\&. Example \-E ET_EXEC,ET_DYN,1
+.PP
+Here is the normal list available for your pleasure\&. You of course are free to specify any numeric value you want\&.
+.PP
+
+\(bu
+\fB0 \- ET_NONE\fR
+\- unknown type
+.sp -1
+.TP 2
+\(bu
+\fB1 \- ET_REL\fR
+\- relocatable file
+.sp -1
+.TP 2
+\(bu
+\fB2 \- ET_EXEC\fR
+\- executable file
+.sp -1
+.TP 2
+\(bu
+\fB3 \- ET_DYN\fR
+\- shared object
+.sp -1
+.TP 2
+\(bu
+\fB4 \- ET_CORE\fR
+\- core file
+.sp
+.SH "ELF BITS"
+.PP
+You can also narrow your search by specifying the ELF bitsize\&. Again, specify the numeric value or the symbolic define\&.
+.PP
+
+\(bu
+\fB32 \- ELFCLASS32\fR
+\- 32bit ELFs
+.sp -1
+.TP 2
+\(bu
+\fB64 \- ELFCLASS64\fR
+\- 64bit ELFs
+.sp
+.SH "HOMEPAGE"
+.PP
+\m[blue]\fBhttp://hardened\&.gentoo\&.org/pax\-utils\&.xml\fR\m[]
+.SH "REPORTING BUGS"
+.PP
+Please include as much information as possible (using any available debugging options) and send bug reports to the maintainers (see the
+\fBAUTHORS\fR
+section)\&. Please use the Gentoo bugzilla at
+\m[blue]\fBhttp://bugs\&.gentoo\&.org/\fR\m[]
+if possible\&.
+.SH "SEE ALSO"
+.PP
+
+\fBchpax\fR(1),
+\fBdumpelf\fR(1),
+\fBpaxctl\fR(1),
+\fBpspax\fR(1),
+\fBreadelf\fR(1),
+\fBscanelf\fR(1)
+.SH "AUTHORS"
+.PP
+\fBNed Ludd\fR <\&solar@gentoo.org\&>
+.RS 4
+Maintainer
+.RE
+.PP
+\fBMike Frysinger\fR <\&vapier@gentoo.org\&>
+.RS 4
+Maintainer
+.RE
+.PP
+\fBFabian Groffen\fR <\&grobian@gentoo.org\&>
+.RS 4
+Mach-O Maintainer
+.RE
+.SH "NOTES"
+.IP " 1." 4
+http://hardened.gentoo.org/pax-utils.xml
+.IP " 2." 4
+http://bugs.gentoo.org/

@@ -1,0 +1,95 @@
+'\" t
+.\"     Title: dumpelf
+.\"    Author: Ned Ludd <solar@gentoo.org>
+.\" Generator: DocBook XSL Stylesheets v1.76.0 <http://docbook.sf.net/>
+.\"      Date: 03/03/2011
+.\"    Manual: Documentation for pax-utils
+.\"    Source: pax-utils 0.2.3
+.\"  Language: English
+.\"
+.TH "DUMPELF" "1" "03/03/2011" "pax\-utils 0.2.3" "Documentation for pax-utils"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+dumpelf \- dump internal ELF structure
+.SH "SYNOPSIS"
+.HP \w'\fBdumpelf\fR\ 'u
+\fBdumpelf\fR [\fIoptions\fR] \fIELFs\fR
+.SH "DESCRIPTION"
+.PP
+
+\fBdumpelf\fR
+is a user\-space utility to dump all of the internal ELF structures into the equivalent C structures for fun debugging and/or reference purposes\&.
+.SH "OPTIONS"
+.PP
+\fB\-h\fR, \fB\-\-help\fR
+.RS 4
+Show condensed usage and exit
+.RE
+.PP
+\fB\-V\fR, \fB\-\-version\fR
+.RS 4
+Print version and exit
+.RE
+.PP
+\fB\-v\fR, \fB\-\-verbose\fR
+.RS 4
+Be verbose (can be used more than once)
+.RE
+.SH "HOMEPAGE"
+.PP
+\m[blue]\fBhttp://hardened\&.gentoo\&.org/pax\-utils\&.xml\fR\m[]
+.SH "REPORTING BUGS"
+.PP
+Please include as much information as possible (using any available debugging options) and send bug reports to the maintainers (see the
+\fBAUTHORS\fR
+section)\&. Please use the Gentoo bugzilla at
+\m[blue]\fBhttp://bugs\&.gentoo\&.org/\fR\m[]
+if possible\&.
+.SH "SEE ALSO"
+.PP
+
+\fBchpax\fR(1),
+\fBdumpelf\fR(1),
+\fBpaxctl\fR(1),
+\fBpspax\fR(1),
+\fBreadelf\fR(1),
+\fBscanelf\fR(1)
+.SH "AUTHORS"
+.PP
+\fBNed Ludd\fR <\&solar@gentoo.org\&>
+.RS 4
+Maintainer
+.RE
+.PP
+\fBMike Frysinger\fR <\&vapier@gentoo.org\&>
+.RS 4
+Maintainer
+.RE
+.PP
+\fBFabian Groffen\fR <\&grobian@gentoo.org\&>
+.RS 4
+Mach-O Maintainer
+.RE
+.SH "NOTES"
+.IP " 1." 4
+http://hardened.gentoo.org/pax-utils.xml
+.IP " 2." 4
+http://bugs.gentoo.org/

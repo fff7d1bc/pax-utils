@@ -1,0 +1,378 @@
+'\" t
+.\"     Title: scanmacho
+.\"    Author: Ned Ludd <solar@gentoo.org>
+.\" Generator: DocBook XSL Stylesheets v1.76.0 <http://docbook.sf.net/>
+.\"      Date: 03/03/2011
+.\"    Manual: Documentation for pax-utils
+.\"    Source: pax-utils 0.2.3
+.\"  Language: English
+.\"
+.TH "SCANMACHO" "1" "03/03/2011" "pax\-utils 0.2.3" "Documentation for pax-utils"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+scanmacho \- user\-space utility to scan Mach\-O files
+.SH "SYNOPSIS"
+.HP \w'\fBscanmacho\fR\ 'u
+\fBscanmacho\fR [\fIoptions\fR] \fIMach\-Os\fR\ or\ \fIdirectories\fR
+.SH "DESCRIPTION"
+.PP
+
+\fBscanmacho\fR
+is a user\-space utility to quickly scan given Mach\-Os, directories, or common system paths for different information\&. This may include Mach\-O types, their install_names, etc\&.\&.\&.
+.PP
+Because Mach\-O files can be "fat", it is possible for a single file to return multiple lines\&. Each line represents a single architecture, contained in the fat (universal) file\&. While there are no real restrictions, in practice, the entries can be distinguished by their arch type, e\&.g\&. ppc, ppc64, i386, x86_64, arm, \&.\&.\&.
+.SH "OPTIONS"
+.PP
+\fB\-A\fR, \fB\-\-archives\fR
+.RS 4
+Scan archives (\&.a files)
+.RE
+.PP
+\fB\-a\fR, \fB\-\-all\fR
+.RS 4
+Print all useful/simple info
+.RE
+.PP
+\fB\-B\fR, \fB\-\-nobanner\fR
+.RS 4
+Don\*(Aqt display the header
+.RE
+.PP
+\fB\-b\fR, \fB\-\-bind\fR
+.RS 4
+Print flags from mach_header
+.RE
+.PP
+\fB\-D\fR, \fB\-\-endian\fR
+.RS 4
+Print Mach\-O endianness
+.RE
+.PP
+\fB\-E\fR, \fB\-\-etype\fR \fIfiletype\fR
+.RS 4
+Print only Mach\-O files matching specified etype (like MH_EXECUTABLE, MH_DYLIB, etc\&.\&.\&.)
+.RE
+.PP
+\fB\-F\fR, \fB\-\-format\fR \fIFORMAT\fR
+.RS 4
+Use specified format for output; see the
+\fBFORMAT\fR
+section for more information\&.
+.RE
+.PP
+\fB\-f\fR, \fB\-\-from\fR \fIFILE\fR
+.RS 4
+Read input stream from specified filename
+.RE
+.PP
+\fB\-g\fR, \fB\-\-gmatch\fR
+.RS 4
+Use strncmp to match libraries (use with
+\fB\-N\fR)\&. Or regexp with symbol matching
+.RE
+.PP
+\fB\-h\fR, \fB\-\-help\fR
+.RS 4
+Show condensed usage and exit
+.RE
+.PP
+\fB\-i\fR, \fB\-\-interp\fR
+.RS 4
+Print the interpreter information (LC_LOAD_DYLINKER)
+.RE
+.PP
+\fB\-M\fR, \fB\-\-bits\fR \fIBITS\fR
+.RS 4
+Print only Mach\-O files matching specified numeric bits (like 32/64)
+.RE
+.PP
+\fB\-m\fR, \fB\-\-mount\fR
+.RS 4
+Don\*(Aqt recursively cross mount points
+.RE
+.PP
+\fB\-N\fR, \fB\-\-lib\fR \fIINSTALLNAME\fR
+.RS 4
+Find Mach\-Os that need the specified INSTALL_NAME
+.RE
+.PP
+\fB\-n\fR, \fB\-\-needed\fR
+.RS 4
+Print libraries the Mach\-O is linked against (LC_LOAD_DYLIB)\&.
+.RE
+.PP
+\fB\-O\fR, \fB\-\-perms\fR \fIPERMS\fR
+.RS 4
+Print only Mach\-O files with matching specified octal bits (like 755)\&.
+.RE
+.PP
+\fB\-o\fR, \fB\-\-file\fR \fIFILE\fR
+.RS 4
+Write output stream to specified filename\&.
+.RE
+.PP
+\fB\-p\fR, \fB\-\-path\fR
+.RS 4
+Scan all directories in PATH environment\&.
+.RE
+.PP
+\fB\-q\fR, \fB\-\-quiet\fR
+.RS 4
+Only output \*(Aqbad\*(Aq things\&.
+.RE
+.PP
+\fB\-R\fR, \fB\-\-recursive\fR
+.RS 4
+Scan directories recursively
+.RE
+.PP
+\fB\-S\fR, \fB\-\-soname\fR
+.RS 4
+Print the Mach\-O\*(Aqs shared library name (install_name)\&.
+.RE
+.PP
+\fB\-V\fR, \fB\-\-version\fR
+.RS 4
+Print version and exit
+.RE
+.PP
+\fB\-v\fR, \fB\-\-verbose\fR
+.RS 4
+Be verbose (can be used more than once)
+.RE
+.PP
+\fB\-y\fR, \fB\-\-symlink\fR
+.RS 4
+Don\*(Aqt scan symlinks
+.RE
+.PP
+\fB\-Z\fR, \fB\-\-size\fR \fISIZE\fR
+.RS 4
+Print Mach\-O file size
+.RE
+.SH "FORMAT"
+.PP
+The format string is much like a printf string in that it is a literal string with flags requesting different information\&. For example, you could use a format string and expect the following results\&.
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+  # \fBscanmacho\fR \fB\-BF\fR "file %f needs %n; funky time" /bin/bash
+  file bash needs /usr/lib/libncurses\&.5\&.4\&.dylib,/usr/lib/libSystem\&.B\&.dylib; funky time
+ 
+.fi
+.if n \{\
+.RE
+.\}
+.PP
+Note that when you use a format string, generally information related flags should be omitted\&. In other words, you do not want to try and request NEEDED output (\fB\-n\fR) and try to specify a format output at the sametime as these operations are mutually exclusive\&. Each information related flag has an equivalent conversion specifier, so use those instead\&. You can of course continue to use non\-information related flags (such as
+\fB\-\-verbose\fR)\&.
+.PP
+There are three characters that introduce conversion specifiers\&.
+.PP
+
+\(bu
+\fB%\fR
+\- replace with info
+.sp -1
+.TP 4
+\(bu
+\fB#\fR
+\- silent boolean match
+.sp -1
+.TP 4
+\(bu
+\fB+\fR
+\- verbose match
+.PP
+And there are a number of conversion specifiers\&. We try to match up the specifier with corresponding option\&.
+.PP
+
+\(bu
+\fBa\fR
+\- arch type
+.sp -1
+.TP 4
+\(bu
+\fBb\fR
+\- mach_header flags
+.sp -1
+.TP 4
+\(bu
+\fBD\fR
+\- endian
+.sp -1
+.TP 4
+\(bu
+\fBF\fR
+\- long filename
+.sp -1
+.TP 4
+\(bu
+\fBf\fR
+\- short filename
+.sp -1
+.TP 4
+\(bu
+\fBi\fR
+\- dyld
+.sp -1
+.TP 4
+\(bu
+\fBM\fR
+\- CPU_TYPE class
+.sp -1
+.TP 4
+\(bu
+\fBN\fR
+\- specified needed
+.sp -1
+.TP 4
+\(bu
+\fBn\fR
+\- needed libraries
+.sp -1
+.TP 4
+\(bu
+\fBp\fR
+\- filename (minus search)
+.sp -1
+.TP 4
+\(bu
+\fBo\fR
+\- mh_type
+.sp -1
+.TP 4
+\(bu
+\fBO\fR
+\- perms
+.sp -1
+.TP 4
+\(bu
+\fBS\fR
+\- install_name
+.sp
+.SH "MACH-O FILETYPES"
+.PP
+You can narrow your search by specifying the Mach\-O object file type\&. The commandline option takes the symbolic type name\&. Multiple values can be passed comma separated\&. Example \-E MH_EXECUTE,MH_DYLIB
+.PP
+Here is the normal list available for your pleasure\&.
+.PP
+
+\(bu
+\fBMH_OBJECT\fR
+\- intermediate object file (\&.o)
+.sp -1
+.TP 4
+\(bu
+\fBMH_EXECUTE\fR
+\- standard executable program
+.sp -1
+.TP 4
+\(bu
+\fBMH_BUNDLE\fR
+\- dlopen plugin (\&.bundle)
+.sp -1
+.TP 4
+\(bu
+\fBMH_DYLIB\fR
+\- dynamic shared library (\&.dylib)
+.sp -1
+.TP 4
+\(bu
+\fBMH_PRELOAD\fR
+\- executable not loaded by Mac OS X kernel (ROM)
+.sp -1
+.TP 4
+\(bu
+\fBMH_CORE\fR
+\- program crash core file
+.sp -1
+.TP 4
+\(bu
+\fBMH_DYLINKER\fR
+\- dynamic linker shared library (dyld)
+.sp -1
+.TP 4
+\(bu
+\fBMH_DYLIB_STUB\fR
+\- shared library stub for static only, no sections
+.sp -1
+.TP 4
+\(bu
+\fBMH_DSYM\fR
+\- debug symbols file (in \&.dSYM dir)
+.sp
+.SH "MACH-O BITS"
+.PP
+You can also narrow your search by specifying the Mach\-O bitsize\&. Specify the numeric value\&.
+.PP
+
+\(bu
+\fB32\fR
+\- 32bit mach_header
+.sp -1
+.TP 4
+\(bu
+\fB64\fR
+\- 64bit mach_header_64
+.sp
+.SH "HOMEPAGE"
+.PP
+\m[blue]\fBhttp://hardened\&.gentoo\&.org/pax\-utils\&.xml\fR\m[]
+.SH "REPORTING BUGS"
+.PP
+Please include as much information as possible (using any available debugging options) and send bug reports to the maintainers (see the
+\fBAUTHORS\fR
+section)\&. Please use the Gentoo bugzilla at
+\m[blue]\fBhttp://bugs\&.gentoo\&.org/\fR\m[]
+if possible\&.
+.SH "SEE ALSO"
+.PP
+
+\fBchpax\fR(1),
+\fBdumpelf\fR(1),
+\fBpaxctl\fR(1),
+\fBpspax\fR(1),
+\fBreadelf\fR(1),
+\fBscanelf\fR(1)
+.SH "AUTHORS"
+.PP
+\fBNed Ludd\fR <\&solar@gentoo.org\&>
+.RS 4
+Maintainer
+.RE
+.PP
+\fBMike Frysinger\fR <\&vapier@gentoo.org\&>
+.RS 4
+Maintainer
+.RE
+.PP
+\fBFabian Groffen\fR <\&grobian@gentoo.org\&>
+.RS 4
+Mach-O Maintainer
+.RE
+.SH "NOTES"
+.IP " 1." 4
+http://hardened.gentoo.org/pax-utils.xml
+.IP " 2." 4
+http://bugs.gentoo.org/
